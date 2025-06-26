@@ -230,11 +230,15 @@ const applyFilters = debounce(_applyFilters, 300)
 
 // 清除单个筛选条件
 const clearFilter = async (filterKey) => {
+  // 排序选项不能被清除，跳过
+  if (filterKey === 'sort') {
+    return
+  }
+  
   // 同步本地状态
   if (filterKey === 'country') selectedFilters.country = ''
   if (filterKey === 'type') selectedFilters.type = ''
   if (filterKey === 'year') selectedFilters.year = ''
-  if (filterKey === 'sort') selectedFilters.sort = 'date-desc'
   if (filterKey === 'keyword') searchKeyword && (searchKeyword.value = '')
 
   // 删除 store 里的字段
@@ -265,10 +269,16 @@ watch(() => caseStore.filters, (newFilters) => {
 
 // 新增：toggleFilter 方法（恢复为原始 value 比较）
 const toggleFilter = async (key, value) => {
-  if (selectedFilters[key] === value) {
-    selectedFilters[key] = ''
-  } else {
+  // 排序选项特殊处理：不会取消选中，直接设置为新值
+  if (key === 'sort') {
     selectedFilters[key] = value
+  } else {
+    // 其他筛选条件：可以取消选中
+    if (selectedFilters[key] === value) {
+      selectedFilters[key] = ''
+    } else {
+      selectedFilters[key] = value
+    }
   }
   await applyFilters()
 }

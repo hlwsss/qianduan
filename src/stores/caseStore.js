@@ -132,13 +132,20 @@ export const useCaseStore = defineStore('case', () => {
         delete merged[key]
       }
     })
+    
+    // 确保始终有一个排序选项
+    if (!merged.sort) {
+      merged.sort = 'date-desc'
+    }
+    
     filters.value = merged
     pagination.value.page = 1 // 重置页码
   }
 
   // 清除筛选条件
   const clearFilters = async () => {
-    filters.value = {}
+    // 保留默认排序选项，清除其他筛选条件
+    filters.value = { sort: 'date-desc' }
     pagination.value.page = 1
     await searchCases() // 清除后立即刷新案例列表
   }
