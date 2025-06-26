@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>法律案例库 - 全球法律案例智能检索系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#165DFF',
+              secondary: '#36CFC9',
+              neutral: '#6B7280',
+              light: '#F9FAFB',
+              dark: '#1F2937',
+              success: '#00B42A',
+              warning: '#FF7D00',
+              danger: '#F53F3F',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        }
+      }
+    </script>
+    
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .text-shadow {
+          text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card-hover {
+          transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html> 
